@@ -5,8 +5,7 @@ from os import listdir, getcwd
 from os.path import join
 import shutil
 import random
-classes = ['scottish', 'great', 'Persian', 'keeshond', 'Ragdoll', 'yorkshire', 'chihuahua', 'american', 'Siamese', 'havanese', 'leonberger', 'shiba', 'basset', 'Russian', 'Abyssinian', 'pug', 'english', 'miniature', 'Sphynx', 'boxer', 'newfoundland', 'Birman', 'japanese', 'german', 'staffordshire', 'wheaten', 'Egyptian', 'British', 'samoyed', 'saint', 'Maine', 'pomeranian', 'Bombay', 'Bengal', 'beagle']
-
+classes = ['Abyssinian', 'Bengal', 'Birman', 'Bombay', 'British', 'Egyptian', 'Maine', 'Persian', 'Ragdoll', 'Russian', 'Siamese', 'Sphynx', 'american', 'basset', 'beagle', 'boxer', 'chihuahua', 'english', 'german', 'great', 'havanese', 'japanese', 'keeshond', 'leonberger', 'miniature', 'newfoundland', 'pomeranian', 'pug', 'saint', 'samoyed', 'scottish', 'shiba', 'staffordshire', 'wheaten', 'yorkshire']
 
 def convert(size, box):
     dw = 1./size[0]

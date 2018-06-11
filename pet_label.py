@@ -109,10 +109,11 @@ if __name__ == '__main__':
     #     val_back_train()
     elif args.command == "clean":
         clean()
-    # elif args.command == "avg":
-    #     average_dataset()
+    elif args.command == "rg":
+        clean()
+        generate()
     else:
-        print("Command error, 'generate' or 'back'")
+        print("Command error, 'generate' or 'clean'")
 
 
 

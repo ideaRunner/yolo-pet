@@ -3,7 +3,7 @@ Real-time pet detection and recognition with YOLO
 
 ## For using or testing
 
-- Download trained weight file from us or train it by yourself.
+- Download trained weight file from our [release](https://github.com/ideaRunner/yolo-pet/releases/download/0.0.1/yolov2-tiny-pet_40000.weights) or train it by yourself.
 - Clone [YOLO](https://pjreddie.com/darknet/yolo/) Project
 
   ```

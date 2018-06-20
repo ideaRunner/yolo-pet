@@ -120,43 +120,43 @@ If you want to train yolo by your self or train other dataset, you can refer to 
   copy, paste and save 
  
   ```
-Abyssinian
-Bengal
-Birman
-Bombay
-British_Shorthair
-Egyptian_Mau
-Maine_Coon
-Persian
-Ragdoll
-Russian_Blue
-Siamese
-Sphynx
-american_bulldog
-american_pit_bull_terrier
-basset_hound
-beagle
-boxer
-chihuahua
-english_cocker_spaniel
-english_setter
-german_shorthaired
-great_pyrenees
-havanese
-japanese_chin
-keeshond
-leonberger
-miniature_pinscher
-newfoundland
-pomeranian
-pug
-saint_bernard
-samoyed
-scottish_terrier
-shiba_inu
-staffordshire_bull_terrier
-wheaten_terrier
-yorkshire_terrier
+  Abyssinian
+  Bengal
+  Birman
+  Bombay
+  British_Shorthair
+  Egyptian_Mau
+  Maine_Coon
+  Persian
+  Ragdoll
+  Russian_Blue
+  Siamese
+  Sphynx
+  american_bulldog
+  american_pit_bull_terrier
+  basset_hound
+  beagle
+  boxer
+  chihuahua
+  english_cocker_spaniel
+  english_setter
+  german_shorthaired
+  great_pyrenees
+  havanese
+  japanese_chin
+  keeshond
+  leonberger
+  miniature_pinscher
+  newfoundland
+  pomeranian
+  pug
+  saint_bernard
+  samoyed
+  scottish_terrier
+  shiba_inu
+  staffordshire_bull_terrier
+  wheaten_terrier
+  yorkshire_terrier
   ```
 
   Create `yolov3.cfg` and Edit the last serveal lines, change fliters to 126 and classes to 37

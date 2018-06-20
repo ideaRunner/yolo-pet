@@ -159,7 +159,9 @@ If you want to train yolo by your self or train other dataset, you can refer to 
   yorkshire_terrier
   ```
 
-  Create `yolov3.cfg` and Edit the last serveal lines, change fliters to 126 and classes to 37
+  Create `yolov3.cfg` and Edit the last serveal lines, change fliters to 126 and classes to 37. For yolov3, you need to find and change **3** times. For yolov2, you need to find and change **2** times. You also need to uncomment the train part `batch` and `subdivisions` in the first servel lines of this cfg file.
+  
+  You can use our `.cfg` file in this repo if you don't want to change by your self.
 
   ```
   mv darknet/cfg/yolov3-voc.cfg darknet/cfg/yolov3-pet.cfg 

@@ -19,7 +19,7 @@ Real-time pet detection and recognition with YOLO
 
   ```
   char *pet_names[] = {"Abyssinian", "Bengal", "Birman", "Bombay", "British_Shorthair", "Egyptian_Mau", "Maine_Coon", "Persian", "Ragdoll", "Russian_Blue", "Siamese", "Sphynx", "american_bulldog", "american_pit_bull_terrier", "basset_hound", "beagle", "boxer", "chihuahua", "english_cocker_spaniel", "english_setter", "german_shorthaired", "great_pyrenees", "havanese", "japanese_chin", "keeshond", "leonberger", "miniature_pinscher", "newfoundland", "pomeranian", "pug", "saint_bernard", "samoyed", "scottish_terrier", "shiba_inu", "staffordshire_bull_terrier", "wheaten_terrier", "yorkshire_terrier"};
-```
+  ```
   Go to the `test_yolo` function and modify the input parameter of `draw_detections`.
 
   Use`draw_detections(im, dets, l.side*l.side*l.n, thresh, pet_names, alphabet, 37);` replace it.
@@ -32,9 +32,8 @@ Real-time pet detection and recognition with YOLO
   make clean
   make -j8
   ```
-  
   Test
-  
+
   ```
   ./darknet detector test cfg/pet.data cfg/yolov3-pet.cfg your-yolo-pet.weights ~/Your-dataset/JPEGImages/havanese_102.jpg 
   ```

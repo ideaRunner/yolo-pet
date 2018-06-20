@@ -40,6 +40,8 @@ Real-time pet detection and recognition with YOLO
   
   There will be an image named `predictions.png` in your darknet root directory.
   
+  ![Prediction](https://raw.githubusercontent.com/ideaRunner/yolo-pet/master/predictions.png?token=AVzird4-L50LvhfyirNMjBKZNZa-X2fVks5bMw3AwA%3D%3D)
+  
 
 
 ## Train your own yolo

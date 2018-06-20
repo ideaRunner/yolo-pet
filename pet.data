@@ -1,0 +1,5 @@
+classes= 37
+train  = /Users/bin_zhang/Development/pet/Train_List.txt
+valid  = /Users/bin_zhang/Development/pet/Val_List.txt
+names = data/pet.names
+backup = pet_backup

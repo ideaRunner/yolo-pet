@@ -1,146 +1,182 @@
 # YOLO-Pets
-Real-time pet detection and recognition
+Real-time pet detection and recognition with YOLO
 
-### Prepared
+## For using or testing
 
-#### Clone this repo
-```
-git clone https://github.com/ideaRunner/yolo-pet.git
-cd yolo-pet
-```
-#### Download Pet Dataset
-The Oxford-IIIT [Pet Dataset](http://www.robots.ox.ac.uk/~vgg/data/pets/)
+- Download trained weight file from us or train it by yourself.
+- Clone [YOLO](https://pjreddie.com/darknet/yolo/) Project
 
-You can download the images and annotations by
+  ```
+  git clone https://github.com/pjreddie/darknet 
+  cd darknet 
+  ```
+- modify yolo source code
 
-```
-wget -c http://www.robots.ox.ac.uk/~vgg/data/pets/data/images.tar.gz
-wget -c http://www.robots.ox.ac.uk/~vgg/data/pets/data/annotations.tar.gz
-```
-Unzip
+  ```
+  vim examples/yolo.c
+  ```
+  Create a new array of labels string.
 
+  ```
+  char *pet_names[] = {"Abyssinian", "Bengal", "Birman", "Bombay", "British_Shorthair", "Egyptian_Mau", "Maine_Coon", "Persian", "Ragdoll", "Russian_Blue", "Siamese", "Sphynx", "american_bulldog", "american_pit_bull_terrier", "basset_hound", "beagle", "boxer", "chihuahua", "english_cocker_spaniel", "english_setter", "german_shorthaired", "great_pyrenees", "havanese", "japanese_chin", "keeshond", "leonberger", "miniature_pinscher", "newfoundland", "pomeranian", "pug", "saint_bernard", "samoyed", "scottish_terrier", "shiba_inu", "staffordshire_bull_terrier", "wheaten_terrier", "yorkshire_terrier"};
 ```
-tar -xvf images.tar.gz
-tar -xvf annotations.tar.gz
-```
-```
-mv images JPEGImages
-```
-#### [YOLO](https://pjreddie.com/darknet/yolo/)
-```
-git clone https://github.com/pjreddie/darknet
-cd darknet
-make
-```
-Download Pretrained Convolutional Weights of YOLO
+  Go to the `test_yolo` function and modify the input parameter of `draw_detections`.
 
-`wget https://pjreddie.com/media/files/darknet53.conv.74`
+  Use`draw_detections(im, dets, l.side*l.side*l.n, thresh, pet_names, alphabet, 37);` replace it.
 
-### Configuration
+- Compile and test your yolo.
+
+  Compile and link this project first.
+  
+  ```
+  make clean
+  make -j8
+  ```
+  
+  Test
+  
+  ```
+  ./darknet detector test cfg/pet.data cfg/yolov3-pet.cfg your-yolo-pet.weights ~/Your-dataset/JPEGImages/havanese_102.jpg 
+  ```
+  
+  There will be an image named `predictions.png` in your darknet root directory.
+  
+
+
+## Train your own yolo
+
+If you want to train yolo by your self or train other dataset, you can refer to this guide.
+
+- Clone this repo
+
+  ```
+  git clone https://github.com/ideaRunner/yolo-pet.git
+  cd yolo-pet
+  ```
+- Download Pet Dataset
+
+  The Oxford-IIIT [Pet Dataset](http://www.robots.ox.ac.uk/~vgg/data/pets/)
+
+  You can download the images and annotations by
+
+  ```
+  wget -c http://www.robots.ox.ac.uk/~vgg/data/pets/data/images.tar.gz
+  wget -c http://www.robots.ox.ac.uk/~vgg/data/pets/data/annotations.tar.gz
+  ```
+  Unzip
+
+  ```
+  tar -xvf images.tar.gz
+  tar -xvf annotations.tar.gz
+  ```
+
+  Change the directory name to which yolo need.
+
+  ```
+  mv images JPEGImages
+  ```
+ 
+- Clone [YOLO](https://pjreddie.com/darknet/yolo/) Project
+
+  ```
+  git clone https://github.com/pjreddie/darknet
+  cd darknet
+  make
+  ```
+  Download Pretrained Convolutional Weights of Yolo-v3
+
+  `wget https://pjreddie.com/media/files/darknet53.conv.74`
+
+#### Configuration for yolo training
 
 - Generate label files
 
-```
-cd ..
-python pet_label generate
-```
+  ```
+  cd ..
+  python pet_label generate
+  ```
 
-Then there will be a `Train_List.txt` file and `Val_List.txt` file in the root directory and labels in `labels` directory
+  Then there will be a `Train_List.txt` file and `Val_List.txt` file in the root directory and labels in `labels` directory. You must **Keep `labels` and `JPEGImages ` in same directory**.
 
 
 - Edit configure files
 
-```
-vim darknet/cfg/pet.data
-```
-copy, paste and save
+  ```
+  vim darknet/cfg/pet.data
+  ```
+  copy, paste and save
 
-```
-classes= 35
-train  = Your/Own/Path/Train_List.txt
-valid  = Your/Own/Path/Val_List.txt
-names = data/pet.names
-backup = pet_backup
-```
-Don't forget to change the path as you generate before.
+  ```
+  classes= 37
+  train  = Your/Own/Path/Train_List.txt
+  valid  = Your/Own/Path/Val_List.txt
+  names = data/pet.names
+  backup = pet_backup
+  ```
+  Don't forget to change the path as you generate before.
 
-```
-vim darknet/data/pet.names
-```
-copy, paste and save 
+  ```
+  vim darknet/data/pet.names
+  ```
+  copy, paste and save 
  
-```
+  ```
 Abyssinian
 Bengal
 Birman
 Bombay
-British
-Egyptian
-Maine
+British_Shorthair
+Egyptian_Mau
+Maine_Coon
 Persian
 Ragdoll
-Russian
+Russian_Blue
 Siamese
 Sphynx
-american
-basset
+american_bulldog
+american_pit_bull_terrier
+basset_hound
 beagle
 boxer
 chihuahua
-english
-german
-great
+english_cocker_spaniel
+english_setter
+german_shorthaired
+great_pyrenees
 havanese
-japanese
+japanese_chin
 keeshond
 leonberger
-miniature
+miniature_pinscher
 newfoundland
 pomeranian
 pug
-saint
+saint_bernard
 samoyed
-scottish
-shiba
-staffordshire
-wheaten
-yorkshire
-```
-yolov3.cfg
+scottish_terrier
+shiba_inu
+staffordshire_bull_terrier
+wheaten_terrier
+yorkshire_terrier
+  ```
 
-```
-mv darknet/cfg/yolov3-voc.cfg darknet/cfg/yolov3-pet.cfg 
-vim darknet/cfg/yolov3-pet.cfg 
-```
-Edit the last serveal lines, change fliters to 120 and classes to 35
+  Create `yolov3.cfg` and Edit the last serveal lines, change fliters to 126 and classes to 37
 
-```
-mkdir darknet/pet_backups
-```
+  ```
+  mv darknet/cfg/yolov3-voc.cfg darknet/cfg/yolov3-pet.cfg 
+  vim darknet/cfg/yolov3-pet.cfg 
+  ```
 
-- Modify Some Code
+  Make a directory for training backup. The name should be same as you defined in `pet.data`.
 
-(1) In src/yolo.c, change class numbers and class names. (And also the paths to the training data and the annotations, i.e., the list we obtained from step 2. )
+  ```
+  mkdir darknet/pet_backups
+  ```
 
-If we want to train new classes, in order to display correct png Label files, we also need to moidify and rundata/labels/make_labels
+- Train yolo
 
-(2) In src/yolo_kernels.cu, change class numbers.
-
-(3) Now we are able to train with new classes, but there is one more thing to deal with. In YOLO, the number of parameters of the second last layer is not arbitrary, instead it is defined by some other parameters including the number of classes, the side(number of splits of the whole image). Please read the paper.
-
-(5 x 2 + number_of_classes) x 7 x 7, as an example, assuming no other parameters are modified.
-
-Therefore, in cfg/yolo.cfg, change the “output” in line 218, and “classes” in line 222.
-
-(4) Now we are good to go. If we need to change the number of layers and experiment with various parameters, just mess with the cfg file. For the original yolo configuration, we have the pre-trained weights to start from. For arbitrary configuration, I’m afraid we have to generate pre-trained model ourselves.
-(5)
-
-```
-
-char *pet_names[] = {"Abyssinian", "Bengal", "Birman", "Bombay", "British", "Egyptian", "Maine", "Persian", "Ragdoll", "Russian", "Siamese", "Sphynx", "american", "basset", "beagle", "boxer", "chihuahua", "english", "german", "great", "havanese", "japanese", "keeshond", "leonberger", "miniature", "newfoundland", "pomeranian", "pug", "saint", "samoyed", "scottish", "shiba", "staffordshire", "wheaten", "yorkshire"}
-
-
-
-draw_detections(im, dets, l.side*l.side*l.n, thresh, pet_names, alphabet, 35);
-
-```
+  ```
+  cd darknet 
+  ./darknet detector train cfg/pet.data cfg/yolov3-pet.cfg  darknet53.conv.74 
+  ```
+  The train result will be at your backup directory. You can fellow the guide above and test wheather it is good or not.

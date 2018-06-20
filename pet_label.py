@@ -38,6 +38,7 @@ def convert_annotation(image_id):
             difficult = obj.find('difficult').text
             # breeds = string.capwords(obj.find('name').text)+'_'+cls
             if cls not in classes or int(difficult) == 1:
+                print("can not find"+str(cls))
                 continue
             # if int(difficult) == 1:
             #     continue
